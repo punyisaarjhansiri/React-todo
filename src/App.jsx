@@ -92,12 +92,12 @@ function App() {
       <div className="container fill text-center">
         {tasks.length != 0 ? (
           <div className="text-center justify-center mt-5">
-            <div class="input-group mb-3">
+            {/*  <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1">
                 Search
               </span>
               <input type="search" className="form-control" />
-            </div>
+            </div> */}
             <div>
               {tasks.filter((task) => task.checked == false).length > 0 && (
                 <h2 className="mb-2">
@@ -118,7 +118,7 @@ function App() {
             </div>
           </div>
         ) : (
-          <div>
+          <div className="text-center justify-center mt-5">
             <h3>You have no task</h3>
             <AddTask addTask={addTask} />
           </div>
