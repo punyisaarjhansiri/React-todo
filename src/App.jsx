@@ -5,17 +5,17 @@ import AddTask from "./component/AddTask";
 import { nanoid } from "nanoid";
 
 function App() {
-  console.log("we are about to show tasks");
-
   const [tasks, setTasks] = useState(
     () => JSON.parse(localStorage.getItem("tasks")) || []
   );
+  const keys = ["name", "description", "priority"];
+  const [query, setQuery] = useState("");
 
   React.useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
-  const activeTasks = tasks.map((task) => {
+  const activeTasks = search(tasks).map((task) => {
     if (task.checked == false) {
       return (
         <Task
@@ -27,11 +27,12 @@ function App() {
           updateTask={updateTask}
           updateCheck={updateCheck}
           deleteTask={(e) => deleteTask(e, task.id)}
+          priority={task.priority}
         />
       );
     }
   });
-  const completedTasks = tasks.map((task) => {
+  const completedTasks = search(tasks).map((task) => {
     if (task.checked == true) {
       return (
         <Task
@@ -43,28 +44,34 @@ function App() {
           updateTask={updateTask}
           updateCheck={updateCheck}
           deleteTask={(e) => deleteTask(e, task.id)}
+          priority={task.priority}
         />
       );
     }
   });
 
-  function updateTask(id, newName, newDescription) {
-    console.log("update Task");
+  function updateTask(id, newName, newDescription, newPriority) {
     const updateTasks = tasks.map((task) => {
       if (id == task.id) {
-        return { ...task, name: newName, description: newDescription };
+        return {
+          ...task,
+          name: newName,
+          description: newDescription,
+          priority: newPriority,
+        };
       }
       return task;
     });
     setTasks(updateTasks);
   }
 
-  function addTask(name, description) {
+  function addTask(name, description, priority) {
     const newTask = {
       id: nanoid(),
       name: name,
       description: description,
       checked: false,
+      priority: priority,
     };
     setTasks([...tasks, newTask]);
   }
@@ -84,46 +91,55 @@ function App() {
   function deleteTask(event, id) {
     event.stopPropagation();
     setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
-    window.location.reload(false);
+  }
+
+  function search(tasks) {
+    return tasks.filter((task) =>
+      keys.some((key) => task[key].toLowerCase().includes(query.toLowerCase()))
+    );
   }
 
   return (
     <div>
-      <div className="container fill text-center">
-        {tasks.length != 0 ? (
-          <div className="text-center justify-center mt-5">
-            {/*  <div class="input-group mb-3">
-              <span class="input-group-text" id="basic-addon1">
-                Search
-              </span>
-              <input type="search" className="form-control" />
-            </div> */}
-            <div>
-              {tasks.filter((task) => task.checked == false).length > 0 && (
-                <h2 className="mb-2">
+      {tasks.length != 0 ? (
+        <div>
+          <input
+            type="search"
+            placeholder="Search name, description, or priority..."
+            className={
+              "mx-auto my-8 flex borde p-2 border border-slate-300 rounded-full  w-1/2"
+            }
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <div>
+            {tasks.filter((task) => task.checked == false).length > 0 && (
+              <div className="mx-auto my-2 flex w-1/2">
+                <span className="text-xl font-bold ">
                   Active ({tasks.filter((task) => task.checked == false).length}
                   )
-                </h2>
-              )}
-              {activeTasks}
-              <AddTask addTask={addTask} />
-            </div>
-            <div className="text-center justify-center mt-5">
-              {tasks.filter((task) => task.checked).length > 0 && (
-                <h2>
-                  Completed ({tasks.filter((task) => task.checked).length})
-                </h2>
-              )}
-              {completedTasks}
-            </div>
-          </div>
-        ) : (
-          <div className="text-center justify-center mt-5">
-            <h3>You have no task</h3>
+                </span>
+              </div>
+            )}
+            {activeTasks}
             <AddTask addTask={addTask} />
           </div>
-        )}
-      </div>
+          <div>
+            {tasks.filter((task) => task.checked).length > 0 && (
+              <div className="mx-auto my-2 flex w-1/2">
+                <span className="text-xl font-bold ">
+                  Completed ({tasks.filter((task) => task.checked).length})
+                </span>
+              </div>
+            )}
+            {completedTasks}
+          </div>
+        </div>
+      ) : (
+        <div className="text-center justify-center mt-5">
+          <span className="text-xl font-bold ">Create Your First Task</span>
+          <AddTask addTask={addTask} />
+        </div>
+      )}
     </div>
   );
 }
