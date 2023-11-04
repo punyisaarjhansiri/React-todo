@@ -18,9 +18,6 @@ function AddTask(props) {
       {show && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-75">
           <div className="bg-white w-full sm:max-w-lg rounded-lg overflow-hidden shadow-lg">
-            {/* <div className=" text-slate-900 p-4 border-b-2">
-              <h2 className="text-xl font-semibold">Add Task</h2>
-            </div> */}
             <div className="p-4">
               <form
                 id="addModal"
