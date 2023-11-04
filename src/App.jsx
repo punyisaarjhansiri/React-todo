@@ -101,45 +101,33 @@ function App() {
 
   return (
     <div>
-      {tasks.length != 0 ? (
+      <div className="mb-16">
         <div>
+          <div className="mx-auto flex w-1/2">
+            <span className="text-3xl p-3 mt-3">To do's</span>
+          </div>
           <input
             type="search"
             placeholder="Search name, description, or priority..."
             className={
-              "mx-auto my-8 flex borde p-2 border border-slate-300 rounded-full  w-1/2"
+              "mx-auto mb-3 flex borde px-4 py-2 text-sm border border-slate-300 rounded-full  w-1/2 font-normal"
             }
             onChange={(e) => setQuery(e.target.value)}
           />
-          <div>
-            {tasks.filter((task) => task.checked == false).length > 0 && (
-              <div className="mx-auto my-2 flex w-1/2">
-                <span className="text-xl font-bold ">
-                  Active ({tasks.filter((task) => task.checked == false).length}
-                  )
-                </span>
-              </div>
-            )}
-            {activeTasks}
-            <AddTask addTask={addTask} />
-          </div>
-          <div>
-            {tasks.filter((task) => task.checked).length > 0 && (
-              <div className="mx-auto my-2 flex w-1/2">
-                <span className="text-xl font-bold ">
-                  Completed ({tasks.filter((task) => task.checked).length})
-                </span>
-              </div>
-            )}
-            {completedTasks}
-          </div>
         </div>
-      ) : (
-        <div className="text-center justify-center mt-5">
-          <span className="text-xl font-bold ">Create Your First Task</span>
+        <div>{activeTasks}</div>
+        <div>
+          {tasks.filter((task) => task.checked).length > 0 && (
+            <div className="mx-auto my-2 flex w-1/2">
+              <span className="text-2xl ">Completed</span>
+            </div>
+          )}
+          {completedTasks}
+        </div>
+        <div id="add-button">
           <AddTask addTask={addTask} />
         </div>
-      )}
+      </div>
     </div>
   );
 }

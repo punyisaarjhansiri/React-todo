@@ -13,17 +13,14 @@ function EditTask(props) {
     <>
       <button
         onClick={handleShow}
-        className="rounded text-blue-500 p-1 hover:text-blue-900"
+        style={props.setStyle} /* className="w-4 h-3.5" */
       >
-        Edit
+        <img src="/assets/Edit.svg" />
       </button>
 
       {show && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-75">
           <div className="bg-white w-full sm:max-w-lg rounded-lg overflow-hidden shadow-lg">
-            <div className=" text-slate-900 p-4 border-b-2">
-              <h2 className="text-xl font-semibold">Edit Task</h2>
-            </div>
             <div className="p-4">
               <form
                 id="editModal"
@@ -33,129 +30,202 @@ function EditTask(props) {
                   handleClose();
                 }}
               >
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Task Name
-                  </label>
+                <div className="mb-2">
                   <input
                     type="text"
                     autoFocus
                     value={name}
+                    placeholder="Title"
                     onChange={(e) => {
                       setName(e.target.value);
                     }}
-                    className="mt-1 p-2 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    className="font-bold text-lg px-2 py-1 block w-full rounded-lg hover: border-0"
                   />
                 </div>
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Description
-                  </label>
+                <div className="mb-2">
                   <textarea
-                    rows="3"
+                    rows="2"
                     value={description}
+                    placeholder="Description (Optional)"
                     onChange={(e) => {
                       setDescription(e.target.value);
                     }}
-                    className="mt-1 p-2 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    className="font-normal text-sm px-2 py-1 block w-full rounded-lg border-0"
                   />
                 </div>
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Priority
-                  </label>
+                <div className="mb-2 border p-1 rounded w-fit">
                   <div className="flex space-x-4">
-                    <div className="flex items-center">
-                      <input
-                        type="radio"
-                        id="noPriority"
-                        name="priority"
-                        value="No Priority"
-                        onChange={(e) => {
-                          setPriority(e.target.value);
-                        }}
-                        checked={priority === "No Priority"}
-                        className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500 focus:ring-2"
-                      />
-                      <label
-                        htmlFor="noPriority"
-                        className="ml-2 text-sm font-medium text-gray-700"
-                      >
-                        No Priority
+                    {/* 11111111111111111111111111 */}
+                    <div class="space-x-2">
+                      <label for="radio-button-0" class="cursor-pointer">
+                        <input
+                          type="radio"
+                          id="radio-button-0"
+                          name="radio-group"
+                          value="No Priority"
+                          onChange={(e) => {
+                            setPriority(e.target.value);
+                          }}
+                          checked={priority === "No Priority"}
+                          className="hidden"
+                        />
+                        <div
+                          class={
+                            priority !== "No Priority"
+                              ? "flex space-x-2 items-center bg-white text-gray-700 px-2 py-1 text-xs rounded hover:bg-gray-200 transition duration-300"
+                              : "flex space-x-2 items-center bg-gray-100 text-gray-700 px-2 py-1 text-xs rounded hover:bg-gray-200 transition duration-300"
+                          }
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="12"
+                            height="18"
+                            viewBox="0 0 12 18"
+                            fill="none"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M10.8333 10.6666C10.9753 10.6665 11.1149 10.6302 11.2389 10.561C11.3629 10.4918 11.4672 10.3921 11.5418 10.2713C11.6165 10.1505 11.659 10.0126 11.6654 9.87079C11.6718 9.72894 11.6418 9.58781 11.5783 9.46079L10.0983 6.49996L11.5783 3.53913C11.6418 3.41211 11.6718 3.27098 11.6654 3.12913C11.659 2.98728 11.6165 2.84942 11.5418 2.72862C11.4672 2.60782 11.3629 2.5081 11.2389 2.43891C11.1149 2.36973 10.9753 2.33337 10.8333 2.33329H1.66667V1.49996C1.66667 1.27895 1.57887 1.06698 1.42259 0.910704C1.26631 0.754423 1.05435 0.666626 0.833333 0.666626C0.61232 0.666626 0.400358 0.754423 0.244078 0.910704C0.0877975 1.06698 0 1.27895 0 1.49996V16.5C0 16.721 0.0877975 16.9329 0.244078 17.0892C0.400358 17.2455 0.61232 17.3333 0.833333 17.3333C1.05435 17.3333 1.26631 17.2455 1.42259 17.0892C1.57887 16.9329 1.66667 16.721 1.66667 16.5V10.6666H10.8333Z"
+                              fill="#565656"
+                            />
+                          </svg>{" "}
+                          <p>No Priority</p>
+                        </div>
                       </label>
                     </div>
-                    <div className="flex items-center">
-                      <input
-                        type="radio"
-                        id="priority1"
-                        name="priority"
-                        value="Priority 1"
-                        onChange={(e) => {
-                          setPriority(e.target.value);
-                        }}
-                        checked={priority === "Priority 1"}
-                        className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500 focus:ring-2"
-                      />
-                      <label
-                        htmlFor="priority1"
-                        className="ml-2 text-sm font-medium text-gray-700"
-                      >
-                        Priority 1
+                    {/* 11111111111111111111111111 */}
+                    <div class="space-x-2">
+                      <label for="radio-button-1" class="cursor-pointer">
+                        <input
+                          type="radio"
+                          id="radio-button-1"
+                          name="radio-group"
+                          value="Priority 1"
+                          onChange={(e) => {
+                            setPriority(e.target.value);
+                          }}
+                          checked={priority === "Priority 1"}
+                          className="hidden"
+                        />
+                        <div
+                          class={
+                            priority !== "Priority 1"
+                              ? "flex space-x-2 items-center bg-white text-red-500 px-2 py-1 text-xs rounded hover:bg-gray-200 transition duration-300"
+                              : "flex space-x-2 items-center bg-gray-100 text-red-500 px-2 py-1 text-xs rounded hover:bg-gray-200 transition duration-300"
+                          }
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="12"
+                            height="18"
+                            viewBox="0 0 12 18"
+                            fill="none"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M10.8333 10.6666C10.9753 10.6665 11.1149 10.6302 11.2389 10.561C11.3629 10.4918 11.4672 10.3921 11.5418 10.2713C11.6165 10.1505 11.659 10.0126 11.6654 9.87079C11.6718 9.72894 11.6418 9.58781 11.5783 9.46079L10.0983 6.49996L11.5783 3.53913C11.6418 3.41211 11.6718 3.27098 11.6654 3.12913C11.659 2.98728 11.6165 2.84942 11.5418 2.72862C11.4672 2.60782 11.3629 2.5081 11.2389 2.43891C11.1149 2.36973 10.9753 2.33337 10.8333 2.33329H1.66667V1.49996C1.66667 1.27895 1.57887 1.06698 1.42259 0.910704C1.26631 0.754423 1.05435 0.666626 0.833333 0.666626C0.61232 0.666626 0.400358 0.754423 0.244078 0.910704C0.0877975 1.06698 0 1.27895 0 1.49996V16.5C0 16.721 0.0877975 16.9329 0.244078 17.0892C0.400358 17.2455 0.61232 17.3333 0.833333 17.3333C1.05435 17.3333 1.26631 17.2455 1.42259 17.0892C1.57887 16.9329 1.66667 16.721 1.66667 16.5V10.6666H10.8333Z"
+                              fill="#ef4444"
+                            />
+                          </svg>{" "}
+                          <span>Priority 1</span>
+                        </div>
                       </label>
                     </div>
-                    <div className="flex items-center">
-                      <input
-                        type="radio"
-                        id="priority2"
-                        name="priority"
-                        value="Priority 2"
-                        onChange={(e) => {
-                          setPriority(e.target.value);
-                        }}
-                        checked={priority === "Priority 2"}
-                        className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500 focus:ring-2"
-                      />
-                      <label
-                        htmlFor="priority2"
-                        className="ml-2 text-sm font-medium text-gray-700"
-                      >
-                        Priority 2
+                    {/* 11111111111111111111111111 */}
+                    <div class="space-x-2">
+                      <label for="radio-button-2" class="cursor-pointer">
+                        <input
+                          type="radio"
+                          id="radio-button-2"
+                          name="radio-group"
+                          value="Priority 2"
+                          onChange={(e) => {
+                            setPriority(e.target.value);
+                          }}
+                          checked={priority === "Priority 2"}
+                          className="hidden"
+                        />
+                        <div
+                          class={
+                            priority !== "Priority 2"
+                              ? "flex space-x-2 items-center bg-white text-yellow-400 px-2 py-1 text-xs rounded hover:bg-gray-200 transition duration-300"
+                              : "flex space-x-2 items-center bg-gray-100 text-yellow-400 px-2 py-1 text-xs rounded hover:bg-gray-200 transition duration-300"
+                          }
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="12"
+                            height="18"
+                            viewBox="0 0 12 18"
+                            fill="none"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M10.8333 10.6666C10.9753 10.6665 11.1149 10.6302 11.2389 10.561C11.3629 10.4918 11.4672 10.3921 11.5418 10.2713C11.6165 10.1505 11.659 10.0126 11.6654 9.87079C11.6718 9.72894 11.6418 9.58781 11.5783 9.46079L10.0983 6.49996L11.5783 3.53913C11.6418 3.41211 11.6718 3.27098 11.6654 3.12913C11.659 2.98728 11.6165 2.84942 11.5418 2.72862C11.4672 2.60782 11.3629 2.5081 11.2389 2.43891C11.1149 2.36973 10.9753 2.33337 10.8333 2.33329H1.66667V1.49996C1.66667 1.27895 1.57887 1.06698 1.42259 0.910704C1.26631 0.754423 1.05435 0.666626 0.833333 0.666626C0.61232 0.666626 0.400358 0.754423 0.244078 0.910704C0.0877975 1.06698 0 1.27895 0 1.49996V16.5C0 16.721 0.0877975 16.9329 0.244078 17.0892C0.400358 17.2455 0.61232 17.3333 0.833333 17.3333C1.05435 17.3333 1.26631 17.2455 1.42259 17.0892C1.57887 16.9329 1.66667 16.721 1.66667 16.5V10.6666H10.8333Z"
+                              fill="#facc15"
+                            />
+                          </svg>{" "}
+                          <span>Priority 2</span>
+                        </div>
                       </label>
                     </div>
-                    <div className="flex items-center">
-                      <input
-                        type="radio"
-                        id="priority3"
-                        name="priority"
-                        value="Priority 3"
-                        onChange={(e) => {
-                          setPriority(e.target.value);
-                        }}
-                        checked={priority === "Priority 3"}
-                        className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500 focus:ring-2"
-                      />
-                      <label
-                        htmlFor="priority3"
-                        className="ml-2 text-sm font-medium text-gray-700"
-                      >
-                        Priority 3
+                    {/* 11111111111111111111111111 */}
+                    <div class="space-x-2">
+                      <label for="radio-button-3" class="cursor-pointer">
+                        <input
+                          type="radio"
+                          id="radio-button-3"
+                          name="radio-group"
+                          value="Priority 3"
+                          onChange={(e) => {
+                            setPriority(e.target.value);
+                          }}
+                          checked={priority === "Priority 3"}
+                          className="hidden"
+                        />
+                        <div
+                          class={
+                            priority !== "Priority 3"
+                              ? "flex space-x-2 items-center bg-white text-lime-500 px-2 py-1 text-xs rounded hover:bg-gray-200 transition duration-300"
+                              : "flex space-x-2 items-center bg-gray-100 text-lime-500 px-2 py-1 text-xs rounded hover:bg-gray-400 transition duration-300"
+                          }
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="12"
+                            height="18"
+                            viewBox="0 0 12 18"
+                            fill="none"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M10.8333 10.6666C10.9753 10.6665 11.1149 10.6302 11.2389 10.561C11.3629 10.4918 11.4672 10.3921 11.5418 10.2713C11.6165 10.1505 11.659 10.0126 11.6654 9.87079C11.6718 9.72894 11.6418 9.58781 11.5783 9.46079L10.0983 6.49996L11.5783 3.53913C11.6418 3.41211 11.6718 3.27098 11.6654 3.12913C11.659 2.98728 11.6165 2.84942 11.5418 2.72862C11.4672 2.60782 11.3629 2.5081 11.2389 2.43891C11.1149 2.36973 10.9753 2.33337 10.8333 2.33329H1.66667V1.49996C1.66667 1.27895 1.57887 1.06698 1.42259 0.910704C1.26631 0.754423 1.05435 0.666626 0.833333 0.666626C0.61232 0.666626 0.400358 0.754423 0.244078 0.910704C0.0877975 1.06698 0 1.27895 0 1.49996V16.5C0 16.721 0.0877975 16.9329 0.244078 17.0892C0.400358 17.2455 0.61232 17.3333 0.833333 17.3333C1.05435 17.3333 1.26631 17.2455 1.42259 17.0892C1.57887 16.9329 1.66667 16.721 1.66667 16.5V10.6666H10.8333Z"
+                              fill="#84cc16"
+                            />
+                          </svg>{" "}
+                          <span>Priority 3</span>
+                        </div>
                       </label>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-white px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <div className="bg-white sm:flex space-x-4 sm:flex-row-reverse">
                   <button
                     type="submit"
                     form="editModal"
-                    className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm"
+                    className="w-full inline-flex justify-center rounded-full shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm"
                   >
                     Save
                   </button>
                   <button
                     onClick={handleClose}
                     type="button"
-                    className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"
+                    className="mt-3 w-full inline-flex justify-center rounded-full px-4 py-2 bg-white text-base font-medium text-indigo-600 hover:text-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"
                   >
                     Cancel
                   </button>
