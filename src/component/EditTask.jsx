@@ -20,8 +20,8 @@ function EditTask(props) {
 
       {show && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-75">
-          <div className="bg-white w-full sm:max-w-lg rounded-lg overflow-hidden shadow-lg">
-            <div className="p-4">
+          <div className="bg-white w-11/12 md:w-9/12 xl:w-6/12 rounded-lg overflow-hidden shadow-lg  ">
+            <div className="p-4 ">
               <form
                 id="editModal"
                 onSubmit={(e) => {
@@ -39,7 +39,7 @@ function EditTask(props) {
                     onChange={(e) => {
                       setName(e.target.value);
                     }}
-                    className="font-bold text-lg px-2 py-1 block w-full rounded-lg hover: border-0"
+                    className="font-bold text-lg px-2 py-1 block w-full rounded-lg hover:border-0"
                   />
                 </div>
                 <div className="mb-2">
@@ -53,8 +53,8 @@ function EditTask(props) {
                     className="font-normal text-sm px-2 py-1 block w-full rounded-lg border-0"
                   />
                 </div>
-                <div className="mb-2 border p-1 rounded w-fit">
-                  <div className="flex space-x-4">
+                <div className="mb-2 border p-1 rounded w-fill sm:w-fit text-center">
+                  <div className="flex space-x-auto sm:space-x-4 ">
                     {/* 11111111111111111111111111 */}
                     <div class="space-x-2">
                       <label for="radio-button-0" class="cursor-pointer">
@@ -214,18 +214,18 @@ function EditTask(props) {
                   </div>
                 </div>
 
-                <div className="bg-white sm:flex space-x-4 sm:flex-row-reverse">
+                <div className="bg-white flex space-x-4 flex-row-reverse w-full">
                   <button
                     type="submit"
                     form="editModal"
-                    className="w-full inline-flex justify-center rounded-full shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm"
+                    className="w-full inline-flex justify-center rounded-full shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:text-sm"
                   >
                     Save
                   </button>
                   <button
                     onClick={handleClose}
                     type="button"
-                    className="mt-3 w-full inline-flex justify-center rounded-full px-4 py-2 bg-white text-base font-medium text-indigo-600 hover:text-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"
+                    className="mt-3 w-full inline-flex justify-center rounded-full px-4 py-2 bg-white text-base font-medium text-indigo-600 hover:text-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0  sm:text-sm"
                   >
                     Cancel
                   </button>

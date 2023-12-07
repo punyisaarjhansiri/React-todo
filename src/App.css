@@ -24,5 +24,26 @@ input[type="checkbox"] {
 #add-button {
   position: fixed;
   bottom: 0;
-  right: 25%;
+  right: 8.33%;
+}
+
+@media only screen and (max-width: 767px) {
+  /* Phone */
+  #add-button {
+    right: 4.167%;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  /* iPad */
+  #add-button {
+    right: 12.5%;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  /* Laptop */
+  #add-button {
+    right: 25%;
+  }
 }

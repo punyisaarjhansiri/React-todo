@@ -17,7 +17,7 @@ function AddTask(props) {
 
       {show && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-75">
-          <div className="bg-white w-full sm:max-w-lg rounded-lg overflow-hidden shadow-lg">
+          <div className="bg-white w-11/12 md:w-9/12 xl:w-6/12  rounded-lg overflow-hidden shadow-lg">
             <div className="p-4">
               <form
                 id="addModal"
@@ -53,8 +53,8 @@ function AddTask(props) {
                     className="font-normal text-sm px-2 py-1 block w-full rounded-lg"
                   />
                 </div>
-                <div className="mb-4 border p-1 rounded w-fit">
-                  <div className="flex space-x-4">
+                <div className="mb-4 border p-1 rounded w-fill sm:w-fit text-center">
+                  <div className="flex space-x-auto sm:space-x-4">
                     {/* 11111111111111111111111111 */}
                     <div class="space-x-2">
                       <label for="radio-button-0" class="cursor-pointer">
@@ -210,7 +210,7 @@ function AddTask(props) {
                   </div>
                 </div>
 
-                <div className="bg-white sm:flex space-x-8 sm:flex-row-reverse">
+                <div className="bg-white sm:flex space-x-0 sm:space-x-8 sm:flex-row-reverse">
                   <button
                     type="submit"
                     form="addModal"

@@ -103,14 +103,14 @@ function App() {
     <div>
       <div className="mb-16">
         <div>
-          <div className="mx-auto flex w-1/2">
+          <div className="mx-auto flex w-11/12 md:w-9/12 xl:w-6/12">
             <span className="text-3xl p-3 mt-3">To do's</span>
           </div>
           <input
             type="search"
             placeholder="Search name, description, or priority..."
             className={
-              "mx-auto mb-3 flex borde px-4 py-2 text-sm border border-slate-300 rounded-full  w-1/2 font-normal"
+              "mx-auto mb-3 flex borde px-4 py-2 text-sm border border-slate-300 rounded-full w-11/12 md:w-9/12 xl:w-6/12 font-normal"
             }
             onChange={(e) => setQuery(e.target.value)}
           />
@@ -118,7 +118,7 @@ function App() {
         <div>{activeTasks}</div>
         <div>
           {tasks.filter((task) => task.checked).length > 0 && (
-            <div className="mx-auto my-2 flex w-1/2">
+            <div className="mx-auto my-2 flex w-11/12 md:w-9/12 xl:w-6/12">
               <span className="text-2xl ">Completed</span>
             </div>
           )}

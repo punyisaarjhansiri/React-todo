@@ -8,16 +8,16 @@ export default function Todo(props) {
 
   if (props.priority == "No Priority") {
     priorityClass =
-      "mx-auto my-2 flex w-1/2 justify-between  border border-l-4 border-l-gray-400 bg bg-white py-2 px-4 ";
+      "mx-auto my-2 flex w-11/12 md:w-9/12 xl:w-6/12 justify-between  border border-l-4 border-l-gray-400 bg bg-white py-2 px-4 ";
   } else if (props.priority == "Priority 1") {
     priorityClass =
-      "mx-auto my-2 flex w-1/2 justify-between  border border-l-4 border-l-red-500 bg-white py-2 px-4 ";
+      "mx-auto my-2 flex w-11/12 md:w-9/12 xl:w-6/12 justify-between  border border-l-4 border-l-red-500 bg-white py-2 px-4 ";
   } else if (props.priority == "Priority 2") {
     priorityClass =
-      "mx-auto my-2 flex w-1/2 justify-between  border border-l-4 border-l-yellow-400 bg-white py-2 px-4 ";
+      "mx-auto my-2 flex w-11/12 md:w-9/12 xl:w-6/12 justify-between  border border-l-4 border-l-yellow-400 bg-white py-2 px-4 ";
   } else if (props.priority == "Priority 3") {
     priorityClass =
-      "mx-auto my-2 flex w-1/2 justify-between border border-l-4 border-l-lime-500 bg-white py-2 px-4";
+      "mx-auto my-2 flex w-11/12 md:w-9/12 xl:w-6/12 justify-between border border-l-4 border-l-lime-500 bg-white py-2 px-4";
   }
 
   return (
@@ -53,7 +53,7 @@ export default function Todo(props) {
           </p>
           <p className="text-sm font-normal">{props.description}</p>
         </div>
-        <div className="flex space-x-4">
+        <div className="flex">
           <EditTask
             name={props.name}
             id={props.id}
@@ -62,7 +62,7 @@ export default function Todo(props) {
             priority={props.priority}
             setStyle={style}
           />
-          <button onClick={props.deleteTask} style={style}>
+          <button onClick={props.deleteTask} style={style} className="ml-4">
             <img src="/assets/Delete.svg" />
           </button>
         </div>
